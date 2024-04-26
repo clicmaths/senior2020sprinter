@@ -1,10 +1,21 @@
-N = int(input(""))
-for i in range(0,N):
-    T = int(input())
-    X = int(input())
+n = int(input())
+times = []
+distances = []
+sortedtimes = []
+sorteddistances = []
+speeds = []
 
+for i in range(n):
+    a = list(map(int,input().split(" ")))
+    times.append(a[0])
+    distances.append(a[1])
 
-list = []
-list.append(abs(X))
-list.sort(reverse=True)
-return list[0] - list["N"]
+sortedtimes, sorteddistances = zip(*sorted(zip(times, distances)))
+
+for j in range(n-1):
+    disdiff = abs(sorteddistances[j+1]-sorteddistances[j])
+    timediff = abs(sortedtimes[j+1]-sortedtimes[j])
+    difference = float(disdiff/timediff)
+    speeds.append(difference)
+
+print(max(speeds))
